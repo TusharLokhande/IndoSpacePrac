@@ -1,0 +1,47 @@
+﻿@model IndoSpacePrac.Core.Entity.Employee.EmployeeEntity
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div>
+        <div>
+            @Html.LabelFor(m => m.EName)
+            @Html.EditorFor(m => m.EName)
+        </div>
+        <div>
+            @Html.LabelFor(m => m.Email)
+            @Html.EditorFor(m => m.Email, new { @type="email"})
+        </div>
+        <div>
+            @Html.LabelFor(m => m.DateOfBirth)
+            <input type="date" id="DateOfBirth"/>
+        </div>
+        <div>
+            @Html.LabelFor(m => m.DepartmentId)
+            @Html.EditorFor(m => m.DepartmentId)
+        </div>
+        <div>
+            @Html.LabelFor(m => m.ReportingManagerId)
+            @Html.EditorFor(m => m.ReportingManagerId)
+        </div>
+        <div>
+            <input type="submit" value="Insert" />
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

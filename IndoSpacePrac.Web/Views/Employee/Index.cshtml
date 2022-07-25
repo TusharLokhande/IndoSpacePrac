@@ -1,0 +1,52 @@
+﻿@model IEnumerable<IndoSpacePrac.Core.Entity.Employee.EmployeeEntity>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(m => m.EName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.DateOfBirth)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.DepartmentName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.ReportingManagerName)
+            </th>
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @item.EName
+            </td>
+            <td>
+                @item.DateOfBirth
+            </td>
+            <td>
+               @item.Email
+            </td>
+            <td>@item.DepartmentName
+            </td>
+            <td>
+               @item.ReportingManagerName
+            </td>
+        </tr>
+    }
+</table>
