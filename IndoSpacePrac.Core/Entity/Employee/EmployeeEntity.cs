@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
+
 namespace IndoSpacePrac.Core.Entity.Employee
 {
     public class EmployeeEntity : BaseEntity
@@ -16,8 +17,7 @@ namespace IndoSpacePrac.Core.Entity.Employee
         public string  EName { get; set; }
 
 
-       // [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        public string DateOfBirth { get; set; }
+        public DateTime? DateOfBirth { get; set; }
 
         public  string DepartmentName { get; set; }
         public  int DepartmentId { get; set; }

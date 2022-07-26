@@ -7,18 +7,16 @@ using System.Globalization;
 using System.IO;
 using IndoSpacePrac.Data.Repository;
 using IndoSpacePrac.Core.Entity.Employee;
+using IndoSpacePrac.Service.Employee;
 
 namespace IndoSpacePrac.Service.Employee
 {
     public class EmployeeService : IEmployeeService
     {
         #region Fields
-        private IRepository<EmployeeEntity> _EmpRepository = new BaseRepository<EmployeeEntity>();
+        private IRepository<EmployeeEntity> _EmpRepository;
 
-        public EmployeeService()
-        {
-            Console.WriteLine("OP");
-        }
+       
 
         public EmployeeService(IRepository<EmployeeEntity> Emprepository)
         {
@@ -30,7 +28,7 @@ namespace IndoSpacePrac.Service.Employee
 
         public IEnumerable<EmployeeEntity> GetEmployees(int pageSize, int start, string sortColumn, string sortOrder, string searchText)
         {
-           // SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["SqlDBConnection"].ConnectionString);
+           
             SqlCommand command = new SqlCommand("EmployeMaster");
             command.CommandType = CommandType.StoredProcedure;
             command.Parameters.Add("@pageSize", SqlDbType.BigInt).Value = pageSize;
@@ -38,7 +36,7 @@ namespace IndoSpacePrac.Service.Employee
             command.Parameters.Add("@SortColumn", SqlDbType.VarChar).Value = sortColumn;
             command.Parameters.Add("@SortOrder", SqlDbType.VarChar).Value = sortOrder;
             command.Parameters.Add("@SearchText", SqlDbType.VarChar).Value = searchText;
-            IEnumerable<EmployeeEntity> list = _EmpRepository.GetRecords(command);
+            var list = _EmpRepository.GetRecords(command);
             return list;
         }
 
@@ -53,7 +51,6 @@ namespace IndoSpacePrac.Service.Employee
             command.Parameters.AddWithValue("@DepartmentId", SqlDbType.Int).Value = entity.DepartmentId;
             command.Parameters.AddWithValue("@ReportingManagerId", SqlDbType.Int).Value = entity.ReportingManagerId;
             command.Parameters.AddWithValue("@isActive", SqlDbType.Bit).Value = entity.isActive;
-
             return _EmpRepository.ExecuteQuery(command);
 
         }

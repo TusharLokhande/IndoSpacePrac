@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IndoSpacePrac.FrameWork
+namespace IndoSpacePrac.Core.Configuration
 {
-    internal interface IDependencyRegistrar
+    public interface ISettings
     {
     }
 }

@@ -7,6 +7,7 @@ using IndoSpacePrac.Service.Employee;
 using IndoSpacePrac.Core.Entity.Employee;
 using IndoSpacePrac.Web.MVC.Controllers;
 using IndoSpacePrac.Web.Extension;
+using IndoSpacePrac.Web.Models.Employee;
 
 
 namespace IndoSpacePrac.Web.Controllers
@@ -15,26 +16,30 @@ namespace IndoSpacePrac.Web.Controllers
     {
         // GET: Employee
         #region Fields
-        private EmployeeService service;
-        private readonly IEmployeeService  _ClientMasterService;
+       
+        private readonly IEmployeeService  _EmployeeService;
         #endregion
 
         #region Constructor
+
         public EmployeeController()
         {
-            service = new EmployeeService();
-            
+           // _EmployeeService = new EmployeeService();
+        }
+
+        public EmployeeController(IEmployeeService employeeService)
+        {
+           this._EmployeeService= employeeService;
         }
         #endregion
 
         public ActionResult Index()
         {
-        
-           
-                var list = service.GetEmployees(10, 1, "EName", "ASC", "");
-                return View(list);
-          
-            
+           // List<EmployeeModel> list = new List<EmployeeModel>();
+            EmployeeModel emp = new EmployeeModel();
+            emp.EmployeeList = _EmployeeService.GetEmployees(10, 1, "EName", "ASC", "").ToList();
+            //list.Add(emp);     
+            return View(emp);
         } 
         
         public ActionResult Create()
@@ -48,7 +53,7 @@ namespace IndoSpacePrac.Web.Controllers
 
             try
             {
-                service.InsertAndUpdate(entity);
+                _EmployeeService.InsertAndUpdate(entity);
             }
             catch (Exception)
             {

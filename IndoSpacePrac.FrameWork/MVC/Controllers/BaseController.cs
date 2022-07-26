@@ -13,11 +13,7 @@ namespace IndoSpacePrac.Web.MVC.Controllers
 
         #region Constructor
 
-        public BaseController()
-        {
-
-        }
-
+        
         #endregion
 
       
