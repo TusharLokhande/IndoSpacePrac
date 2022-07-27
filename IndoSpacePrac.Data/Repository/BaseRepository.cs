@@ -11,7 +11,7 @@ using System.Text;
 
 namespace IndoSpacePrac.Data.Repository
 {
-    public partial class BaseRepository<T> : IRepository<T> where T : BaseEntity
+    public partial class BaseRepository<T> : IRepository<T> where T: BaseEntity
     {
         private SqlConnection _connection;
         private int _CommantTimeout = 300;

@@ -25,6 +25,11 @@ namespace IndoSpacePrac.Web
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new ScriptBundle("~/Scripts/Custom/Index").Include(
+                    "~/Scripts/jquery-3.4.1.min.js",
+                    "~/Scripts/Custom/EmployeeMaster.js"
+                ));
         }
     }
 }

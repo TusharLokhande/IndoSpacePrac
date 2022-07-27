@@ -8,23 +8,29 @@ using System.IO;
 using IndoSpacePrac.Data.Repository;
 using IndoSpacePrac.Core.Entity.Employee;
 using IndoSpacePrac.Service.Employee;
+using IndoSpacePrac.Core.Entity.Common;
 
 namespace IndoSpacePrac.Service.Employee
 {
     public class EmployeeService : IEmployeeService
     {
         #region Fields
+
         private IRepository<EmployeeEntity> _EmpRepository;
 
-       
 
         public EmployeeService(IRepository<EmployeeEntity> Emprepository)
         {
             _EmpRepository = Emprepository;
         }
 
-
-
+        public IEnumerable<DropDownEntity> stpGetDepartmentList()
+        {
+            SqlCommand command = new SqlCommand("sp_GetDepartments");
+            command.CommandType = CommandType.StoredProcedure;
+            List<DropDownEntity> list = new List<DropDownEntity>();
+            return list;
+        }
 
         public IEnumerable<EmployeeEntity> GetEmployees(int pageSize, int start, string sortColumn, string sortOrder, string searchText)
         {
@@ -52,8 +58,17 @@ namespace IndoSpacePrac.Service.Employee
             command.Parameters.AddWithValue("@ReportingManagerId", SqlDbType.Int).Value = entity.ReportingManagerId;
             command.Parameters.AddWithValue("@isActive", SqlDbType.Bit).Value = entity.isActive;
             return _EmpRepository.ExecuteQuery(command);
-
         }
+
+        public IEnumerable<EmployeeEntity> tp()
+        {
+            SqlCommand command = new SqlCommand("sp_tp");
+            command.CommandType = CommandType.StoredProcedure;
+            return _EmpRepository.GetRecords(command);
+        }
+
+
+
 
         #endregion
 

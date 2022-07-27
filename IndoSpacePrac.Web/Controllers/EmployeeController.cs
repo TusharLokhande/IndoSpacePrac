@@ -8,7 +8,8 @@ using IndoSpacePrac.Core.Entity.Employee;
 using IndoSpacePrac.Web.MVC.Controllers;
 using IndoSpacePrac.Web.Extension;
 using IndoSpacePrac.Web.Models.Employee;
-
+using IndoSpacePrac.Web.Models.DropDown;
+using AutoMapper;
 
 namespace IndoSpacePrac.Web.Controllers
 {
@@ -21,12 +22,7 @@ namespace IndoSpacePrac.Web.Controllers
         #endregion
 
         #region Constructor
-
-        public EmployeeController()
-        {
-           // _EmployeeService = new EmployeeService();
-        }
-
+        
         public EmployeeController(IEmployeeService employeeService)
         {
            this._EmployeeService= employeeService;
@@ -35,11 +31,8 @@ namespace IndoSpacePrac.Web.Controllers
 
         public ActionResult Index()
         {
-           // List<EmployeeModel> list = new List<EmployeeModel>();
-            EmployeeModel emp = new EmployeeModel();
-            emp.EmployeeList = _EmployeeService.GetEmployees(10, 1, "EName", "ASC", "").ToList();
-            //list.Add(emp);     
-            return View(emp);
+            EmployeeModel obj = new EmployeeModel();
+            return View(obj);
         } 
         
         public ActionResult Create()
@@ -61,5 +54,27 @@ namespace IndoSpacePrac.Web.Controllers
             }
             return RedirectToAction("Index","Employee");
         }
+
+        public ActionResult ge()
+        {
+            Int64 totalCount = 0;
+                var data = _EmployeeService.tp().Select(x => x.ToModel()).ToList();
+                    
+           // var data = _EmployeeService.GetEmployees(10, 1,"EName", "ASC","").Select(x => x.ToModel()).ToList();
+                Int64 recordsTotal = 0;
+                if(data.Count() > 0)
+                {
+                    totalCount = data[0].TotalCount;
+                }
+                else
+                {
+                    totalCount = 0;
+                }
+                recordsTotal = totalCount;
+                return Json(new { data = data, recordsTotal = recordsTotal }, JsonRequestBehavior.AllowGet);
+            
+            
+        }
+
     }
 }

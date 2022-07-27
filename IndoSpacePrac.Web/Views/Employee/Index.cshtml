@@ -1,4 +1,4 @@
-﻿@model IEnumerable<IndoSpacePrac.Core.Entity.Employee.EmployeeEntity>
+﻿@model IndoSpacePrac.Web.Models.Employee.EmployeeModel
 
 @{
     ViewBag.Title = "Index";
@@ -10,43 +10,20 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 
-<table class="table">
+
+<table id="table_id" class="display">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(m => m.EName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(m => m.DateOfBirth)
-            </th>
-            <th>
-                @Html.DisplayNameFor(m => m.Email)
-            </th>
-            <th>
-                @Html.DisplayNameFor(m => m.DepartmentName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(m => m.ReportingManagerName)
-            </th>
+            <th>@Html.LabelFor(m => m.EName)</th>
+            <th>@Html.LabelFor(m => m.Email)</th>
+            <th>@Html.LabelFor(m => m.DepartmentName)</th>
+            <th>@Html.LabelFor(m => m.ReportingManagerName)</th>
+
         </tr>
     </thead>
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @item.EName
-            </td>
-            <td>
-                @item.DateOfBirth
-            </td>
-            <td>
-               @item.Email
-            </td>
-            <td>@item.DepartmentName
-            </td>
-            <td>
-               @item.ReportingManagerName
-            </td>
-        </tr>
-    }
+    <tbody>
+       
+    </tbody>
 </table>
+
+@Scripts.Render("~/Scripts/Custom/Index");

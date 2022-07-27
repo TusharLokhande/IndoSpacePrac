@@ -2,22 +2,33 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using IndoSpacePrac.Core.Entity.Employee;
+using IndoSpacePrac.Web.Models.DropDown;
+
 
 
 namespace IndoSpacePrac.Web.Models.Employee
 {
-    public class EmployeeModel :BaseModel
+    public class EmployeeModel : BaseModel
     {
-        public List<EmployeeEntity> EmployeeList { get; set; }
+        #region Lists
+        public List<DropDownModel> Departmentlist { get; set; }
+        #endregion
 
 
-        public new long Id { get; set; }
-        public new long TotalCount { get; set; }
+        public EmployeeModel()
+        {
+            Departmentlist = new List<DropDownModel>();
+        }
+
+
+        #region Property
+        public long Id { get; set; }
+        public long TotalCount { get; set; }
 
         public string EName { get; set; }
 
-        public DateTime? DateOfBirth { get; set; }
+
+        public string DateOfBirth { get; set; }
 
         public string DepartmentName { get; set; }
         public int DepartmentId { get; set; }
@@ -29,7 +40,7 @@ namespace IndoSpacePrac.Web.Models.Employee
         public string Email { get; set; }
 
         public int isActive { get; set; }
+        #endregion
 
-        
     }
 }

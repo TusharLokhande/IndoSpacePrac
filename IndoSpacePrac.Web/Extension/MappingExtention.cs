@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using IndoSpacePrac.Core.Entity.Employee;
+using IndoSpacePrac.Core.Entity.Common;
 using IndoSpacePrac.Web.Models.Employee;
+using IndoSpacePrac.Web.Models.DropDown;
 
 namespace IndoSpacePrac.Web.Extension
 {
@@ -19,6 +21,8 @@ namespace IndoSpacePrac.Web.Extension
         {
             return Mapper.Map(source, destination);
         }
+
+
         #region Employee
 
 
@@ -31,6 +35,17 @@ namespace IndoSpacePrac.Web.Extension
         {
             return model.MapTo<EmployeeModel, EmployeeEntity>();
         }
+        
+        public static EmployeeEntity ToEntity(this EmployeeModel model, EmployeeEntity destination)
+        {
+            return model.MapTo(destination);
+        }
+
+        #endregion
+
+        #region Department 
+
+       
 
         #endregion
     }
