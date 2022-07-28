@@ -67,6 +67,8 @@ namespace IndoSpacePrac.Service.Employee
             return _EmpRepository.GetRecords(command);
         }
 
+        
+
 
 
 

@@ -55,15 +55,10 @@ namespace IndoSpacePrac.Web.Controllers
             return RedirectToAction("Index","Employee");
         }
 
-        public ActionResult ge()
+        public ActionResult GetEmployeeMaster()
         {
-
-            var op = Mapper.Map<IEnumerable<EmployeeModel>>(_EmployeeService.tp());
-
-            var data = _EmployeeService.GetEmployees(10, 1, "EName", "ASC", "");
-            return Json(op, JsonRequestBehavior.AllowGet);
-            
-            
+            var op = Mapper.Map<IEnumerable<EmployeeModel>>(_EmployeeService.GetEmployees(10, 1, "EName", "ASC", ""));
+            return Json(op, JsonRequestBehavior.AllowGet);   
         }
 
     }

@@ -26,10 +26,27 @@ namespace IndoSpacePrac.Web
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
 
-            bundles.Add(new ScriptBundle("~/Scripts/Custom/Index").Include(
-                    "~/Scripts/jquery-3.4.1.min.js",
-                    "~/Scripts/Custom/EmployeeMaster.js"
+            bundles.Add(new ScriptBundle("~/Scripts/Custom")
+            .Include(
+                     "~/Scripts/Custom/EmployeeMaster.js"
+            )); 
+            
+            bundles.Add(new ScriptBundle("~/Scripts/jquery")
+            .Include("~/Scripts/jquery-3.4.1.min.js"
+            ));
+
+            bundles.Add(new ScriptBundle("~/Scripts/DataTables")
+                .Include(
+                    "~/Scripts/DataTables/jquery.dataTables.min.js"
                 ));
+
+            bundles.Add(new StyleBundle("~/Custom/DataTables")
+                .IncludeDirectory(
+                    "~/Content/DataTables/css","*.css"
+                ));
+
         }
+        
+
     }
 }
