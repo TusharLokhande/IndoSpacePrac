@@ -57,21 +57,11 @@ namespace IndoSpacePrac.Web.Controllers
 
         public ActionResult ge()
         {
-            Int64 totalCount = 0;
-                var data = _EmployeeService.tp().Select(x => x.ToModel()).ToList();
-                    
-           // var data = _EmployeeService.GetEmployees(10, 1,"EName", "ASC","").Select(x => x.ToModel()).ToList();
-                Int64 recordsTotal = 0;
-                if(data.Count() > 0)
-                {
-                    totalCount = data[0].TotalCount;
-                }
-                else
-                {
-                    totalCount = 0;
-                }
-                recordsTotal = totalCount;
-                return Json(new { data = data, recordsTotal = recordsTotal }, JsonRequestBehavior.AllowGet);
+
+            var op = Mapper.Map<IEnumerable<EmployeeModel>>(_EmployeeService.tp());
+
+            var data = _EmployeeService.GetEmployees(10, 1, "EName", "ASC", "");
+            return Json(op, JsonRequestBehavior.AllowGet);
             
             
         }
