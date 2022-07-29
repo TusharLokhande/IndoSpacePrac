@@ -24,13 +24,7 @@ namespace IndoSpacePrac.Service.Employee
             _EmpRepository = Emprepository;
         }
 
-        public IEnumerable<DropDownEntity> stpGetDepartmentList()
-        {
-            SqlCommand command = new SqlCommand("sp_GetDepartments");
-            command.CommandType = CommandType.StoredProcedure;
-            List<DropDownEntity> list = new List<DropDownEntity>();
-            return list;
-        }
+        
 
         public IEnumerable<EmployeeEntity> GetEmployees(int pageSize, int start, string sortColumn, string sortOrder, string searchText)
         {
@@ -56,7 +50,7 @@ namespace IndoSpacePrac.Service.Employee
             command.Parameters.AddWithValue("@DateOfBirth", SqlDbType.Date).Value = entity.DateOfBirth;
             command.Parameters.AddWithValue("@DepartmentId", SqlDbType.Int).Value = entity.DepartmentId;
             command.Parameters.AddWithValue("@ReportingManagerId", SqlDbType.Int).Value = entity.ReportingManagerId;
-            command.Parameters.AddWithValue("@isActive", SqlDbType.Bit).Value = entity.isActive;
+            command.Parameters.AddWithValue("@isActive", SqlDbType.Bit).Value = 1;
             return _EmpRepository.ExecuteQuery(command);
         }
 

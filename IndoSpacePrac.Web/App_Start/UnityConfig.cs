@@ -4,6 +4,7 @@ using System.Web.Mvc;
 using Unity;
 using Unity.Mvc5;
 using Unity.Injection;
+using IndoSpacePrac.Service.DropDown;
 
 namespace IndoSpacePrac.Web
 {
@@ -21,6 +22,7 @@ namespace IndoSpacePrac.Web
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
             container.RegisterType(typeof(IRepository<>), typeof(BaseRepository<>));
             container.RegisterType<IEmployeeService, EmployeeService>();
+            container.RegisterType<IDropDown, DropDownService>();
 
         }
     }

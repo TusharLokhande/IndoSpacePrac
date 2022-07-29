@@ -1,47 +1,57 @@
-﻿@model IndoSpacePrac.Core.Entity.Employee.EmployeeEntity
+﻿@model IndoSpacePrac.Web.Models.Employee.EmployeeModel
 
 @{
     ViewBag.Title = "Create";
 }
-
+@Scripts.Render("~/Scripts/jquery")
 <h2>Create</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
-    @Html.AntiForgeryToken()
-    
+
     <div>
-        <div>
-            @Html.LabelFor(m => m.EName)
-            @Html.EditorFor(m => m.EName)
-        </div>
-        <div>
-            @Html.LabelFor(m => m.Email)
-            @Html.EditorFor(m => m.Email, new { @type="email"})
-        </div>
-        <div>
-            @Html.LabelFor(m => m.DateOfBirth)
-            <input type="date" id="DateOfBirth"/>
-        </div>
-        <div>
-            @Html.LabelFor(m => m.DepartmentId)
-            @Html.EditorFor(m => m.DepartmentId)
-        </div>
-        <div>
-            @Html.LabelFor(m => m.ReportingManagerId)
-            @Html.EditorFor(m => m.ReportingManagerId)
-        </div>
-        <div>
-            <input type="submit" value="Insert" />
-        </div>
+        <label>Enter your Name</label>
+        @Html.EditorFor(m => m.EName)
+    </div>
+
+    <div>
+        <label>Enter your Email</label>
+        @Html.EditorFor(m => m.Email)
+    </div>
+
+
+    <div>
+        <label>Select Date of Birth</label>
+        @Html.EditorFor(m => m.DateOfBirth, new { htmlAttributes = new { @type = "date" } })
+    </div>
+
+
+    <div>
+        <label>Select Department</label>
+        @Html.DropDownListFor(m => m.DepartmentId, new SelectList(Model.Departmentlist, "Value", "Text"), "Select Department")
+    </div>
+
+    <div>
+        <label>Select ReportingManager</label>
+        @Html.DropDownListFor(m => m.ReportingManagerId, new SelectList(Model.ReportingManagerList, "Value", "Text"), "Select Reporting Manager")
+    </div>
+
+    <div>
+        <input type="submit" value="Insert" />
+    </div>
+    <div>
+        @Html.ActionLink("Back to List", "Index")
     </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
-
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+
 }
+<script>
+    $(document).ready(() => {
+        $("#DepartmentId").on("change", () => {
+          
+        })
+    })
+</script>

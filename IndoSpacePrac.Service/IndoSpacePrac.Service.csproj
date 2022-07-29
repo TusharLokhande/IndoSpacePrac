@@ -143,6 +143,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\UnityConfig.cs" />
+    <Compile Include="DropDown\DropDownService.cs" />
+    <Compile Include="DropDown\IDropDown.cs" />
     <Compile Include="Employee\EmployeeService.cs" />
     <Compile Include="Employee\IEmployeeService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -17,7 +17,6 @@ namespace IndoSpacePrac.Service.Employee
 
         IEnumerable<EmployeeEntity> tp();
 
-        IEnumerable<DropDownEntity> stpGetDepartmentList(); 
     }
 
 }

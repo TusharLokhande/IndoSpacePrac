@@ -147,6 +147,7 @@
     <Compile Include="Configuration\CustomConfig.cs" />
     <Compile Include="Configuration\ISettings.cs" />
     <Compile Include="Entity\Common\DropDownEntity.cs" />
+    <Compile Include="Entity\Employee\DropDownEntity.cs" />
     <Compile Include="Entity\Employee\EmployeeEntity.cs" />
     <Compile Include="Entity\Employee\Settings\Settings.cs" />
     <Compile Include="Infrastructure\IDependencyRegistar.cs" />

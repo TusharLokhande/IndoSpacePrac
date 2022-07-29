@@ -12,7 +12,7 @@ $(document).ready(() => {
         'contentType': 'application/json'
     }).done(function (data) {
         $('#table').dataTable({
-            "aaData": data,
+        "data": data,
         "columns": [
             { "data": "EName" },
             { "data": "Email" },
