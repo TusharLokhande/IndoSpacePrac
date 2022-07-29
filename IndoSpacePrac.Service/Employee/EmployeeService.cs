@@ -24,7 +24,14 @@ namespace IndoSpacePrac.Service.Employee
             _EmpRepository = Emprepository;
         }
 
-        
+        public EmployeeEntity GetEmployeeById(int? id)
+        {
+            SqlCommand command = new SqlCommand("SelectEmployeeId");
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.Add("@id", SqlDbType.Int).Value = id;
+            var list = _EmpRepository.GetRecord(command);
+            return list;
+        }
 
         public IEnumerable<EmployeeEntity> GetEmployees(int pageSize, int start, string sortColumn, string sortOrder, string searchText)
         {
@@ -60,6 +67,7 @@ namespace IndoSpacePrac.Service.Employee
             command.CommandType = CommandType.StoredProcedure;
             return _EmpRepository.GetRecords(command);
         }
+
 
         
 

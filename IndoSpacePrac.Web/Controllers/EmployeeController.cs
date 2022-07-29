@@ -37,12 +37,18 @@ namespace IndoSpacePrac.Web.Controllers
             return View(obj);
         } 
         
-        public ActionResult Create()
+        public ActionResult Create(int? id)
         {
             EmployeeModel obj = new EmployeeModel();
 
             // var Department = Mapper.Map<IEnumerable<DropDownModel>>(_DropDownService.GetDeparmentList().Select(x => x)).ToList();
             //var departmentList = Department.ToList();
+
+            if(id > 0)
+            {
+                var data = Mapper.Map<EmployeeModel>(_EmployeeService.GetEmployeeById(id));
+                obj = data;
+            }
 
             var a = _DropDownService.GetDeparmentList().Select(m => m).ToList();
             var reportingManagerlist = _DropDownService.GetReportingManagerList().Select(m => m).ToList(); 

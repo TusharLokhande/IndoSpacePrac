@@ -17,6 +17,7 @@ namespace IndoSpacePrac.Service.Employee
 
         IEnumerable<EmployeeEntity> tp();
 
+        EmployeeEntity GetEmployeeById(int? id);
     }
 
 }
