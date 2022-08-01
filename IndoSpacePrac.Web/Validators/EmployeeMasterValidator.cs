@@ -12,7 +12,7 @@ using System.Text.RegularExpressions;
 
 namespace IndoSpacePrac.Web.Validators
 {
-    public class EmployeeMasterValidator : BaseValidator<EmployeeModel>
+    public class EmployeeMasterValidator : BaseValidator<EmployeeCreateModal>
     {
         #region Fields 
         
@@ -24,18 +24,21 @@ namespace IndoSpacePrac.Web.Validators
                 
             public EmployeeMasterValidator(IEmployeeService employeeService)
             {
-                this._EmployeeService = employeeService;
-                RuleFor(x => x.EName).NotNull().WithMessage("Employee Name is Required");
+                _EmployeeService = employeeService;
+                RuleFor(x => x.EName).NotNull().WithMessage("Employee11 Name is Required");
                 RuleFor(x => x.Email).NotNull().WithMessage("Employee Email is Required").Must(CheckEmail).WithMessage("Email is not Valid!");
-                
-            }
+               // RuleFor(x => x.ReportingManagerId).NotEmpty().WithMessage("Select Reporting Manager");
+               // RuleFor(x => x.DepartmentId).NotEmpty().WithMessage("Select Department Manager");
+            
+        }
+
 
 
         #endregion
 
         #region Methods
 
-        public bool CheckEmail(EmployeeModel model, string EmailId)
+        public bool CheckEmail(EmployeeCreateModal model, string EmailId)
         {
             if (!String.IsNullOrEmpty(model.Email))
             {

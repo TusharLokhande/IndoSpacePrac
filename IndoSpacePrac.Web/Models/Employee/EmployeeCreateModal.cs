@@ -1,26 +1,25 @@
-﻿using System;
+﻿using FluentValidation.Attributes;
+using IndoSpacePrac.Web.Validators;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using FluentValidation.Attributes;
-using IndoSpacePrac.Web.Models.DropDown;
-using IndoSpacePrac.Web.Validators;
 
 namespace IndoSpacePrac.Web.Models.Employee
 {
     [Validator(typeof(EmployeeMasterValidator))]
-    public class EmployeeModel : BaseModel
+    public class EmployeeCreateModal
+
     {
-       
 
         #region Lists
         public List<SelectListItem> Departmentlist { get; set; }
         public List<SelectListItem> ReportingManagerList { get; set; }
         #endregion
 
-        public EmployeeModel()
+        public EmployeeCreateModal()
         {
             Departmentlist = new List<SelectListItem>();
             ReportingManagerList = new List<SelectListItem>();
@@ -49,6 +48,5 @@ namespace IndoSpacePrac.Web.Models.Employee
 
         public int isActive { get; set; }
         #endregion
-
     }
 }

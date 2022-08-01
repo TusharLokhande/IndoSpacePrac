@@ -17,6 +17,8 @@ namespace IndoSpacePrac.Web.Infrastructure
             Mapper.CreateMap<EmployeeEntity, EmployeeModel>();
             Mapper.CreateMap<DropDownModel, DropDownEntity>();
             Mapper.CreateMap<DropDownEntity, DropDownModel>();
+            Mapper.CreateMap<EmployeeCreateModal, EmployeeEntity>();
+            Mapper.CreateMap<EmployeeEntity, EmployeeCreateModal>();
         }
     }
 }

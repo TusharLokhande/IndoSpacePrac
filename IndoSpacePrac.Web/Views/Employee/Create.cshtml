@@ -1,52 +1,69 @@
-﻿@model IndoSpacePrac.Web.Models.Employee.EmployeeModel
+﻿@model IndoSpacePrac.Web.Models.Employee.EmployeeCreateModal
 
 @{
     ViewBag.Title = "Create";
 }
 
-@Scripts.Render("~/Scripts/jquery")
-<h3 class="heading">INSERT EMPLOYEE DETAILS</h3>
+<h2>Create</h2>
 
-<div class="_container">
-    <div class="main">
-        @using (Html.BeginForm())
-        {
 
-            <div class="form-group">
-                <label>Enter your Name</label>
-                @Html.EditorFor(m => m.EName, new { htmlAttributes = new { @class = "form-control" } })
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <h4>EmployeeCreateModal</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+ 
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.EName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.EName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.EName, "", new { @class = "text-danger" })
             </div>
+        </div>
 
-            <div class="form-group">
-                <label>Enter your Email</label>
-                @Html.EditorFor(m => m.Email, new { htmlAttributes = new { @class = "form-control" } })
+        <div class="form-group">
+            @Html.LabelFor(model => model.DateOfBirth, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DateOfBirth, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DateOfBirth, "", new { @class = "text-danger" })
             </div>
+        </div>
 
 
-            <div class="form-group">
-                <label>Select Date of Birth</label>
-                @Html.EditorFor(m => m.DateOfBirth)
+        <div class="form-group">
+            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
             </div>
+        </div> 
+    
+      
+
+        <div class="form-group">
+            <label class="control-label col-md-2">select department</label>
+            <div class="col-md-10">
+                @Html.DropDownListFor(m => m.DepartmentId, new SelectList(Model.Departmentlist, "Value", "Text"), "Select Department", new { @tabindex = "1", @data_live_search = "true" })
+                @Html.ValidationMessageFor(model => model.DepartmentId, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
 
-            <div class="form-group">
-                <label style="margin-right: 20px">Select Department</label>
-                @Html.DropDownListFor(m => m.DepartmentId, new SelectList(Model.Departmentlist, "Value", "Text"), "Select Department", new { @class = "select" })
-            </div>
 
-            <div class="form-group">
-                <label>Select ReportingManager</label>
-                @Html.DropDownListFor(m => m.ReportingManagerId, new SelectList(Model.ReportingManagerList, "Value", "Text"), "Select Reporting Manager", new { @class = "select" })
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
             </div>
-
-            <div class="_button" >
-                <input type="submit" value="Insert" class="btn btn-primary" />
-            </div>
-            <div class="_button">
-                @Html.ActionLink("Back to List", "Index")
-            </div>
-        }
+        </div>
     </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
 </div>
 
 @section Scripts {

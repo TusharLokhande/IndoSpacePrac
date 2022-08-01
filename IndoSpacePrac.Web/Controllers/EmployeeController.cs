@@ -11,6 +11,7 @@ using IndoSpacePrac.Web.Models.Employee;
 using IndoSpacePrac.Web.Models.DropDown;
 using AutoMapper;
 using IndoSpacePrac.Service.DropDown;
+using IndoSpacePrac.Web.Helper;
 
 namespace IndoSpacePrac.Web.Controllers
 {
@@ -22,8 +23,10 @@ namespace IndoSpacePrac.Web.Controllers
         private readonly IEmployeeService  _EmployeeService;
         #endregion
         private readonly IDropDown _DropDownService;
-        #region Constructor
+
         
+        #region Constructor
+
         public EmployeeController(IEmployeeService employeeService, IDropDown DropDownService)
         {
            this._EmployeeService= employeeService;
@@ -39,14 +42,14 @@ namespace IndoSpacePrac.Web.Controllers
         
         public ActionResult Create(int? id)
         {
-            EmployeeModel obj = new EmployeeModel();
+            EmployeeCreateModal obj = new EmployeeCreateModal();
 
             // var Department = Mapper.Map<IEnumerable<DropDownModel>>(_DropDownService.GetDeparmentList().Select(x => x)).ToList();
             //var departmentList = Department.ToList();
-
+            
             if(id > 0)
             {
-                var data = Mapper.Map<EmployeeModel>(_EmployeeService.GetEmployeeById(id));
+                var data = Mapper.Map<EmployeeCreateModal>(_EmployeeService.GetEmployeeById(id));
                 obj = data;
             }
 
@@ -62,11 +65,18 @@ namespace IndoSpacePrac.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(EmployeeModel model)
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(EmployeeCreateModal model)
         {
-            var data = Mapper.Map<EmployeeModel, EmployeeEntity>(model);
-            _EmployeeService.InsertAndUpdate(data);
-            return RedirectToAction("Index");
+            Validation(model);
+
+            if (ModelState.IsValid)
+            {
+                var data = Mapper.Map<EmployeeCreateModal, EmployeeEntity>(model);
+                _EmployeeService.InsertAndUpdate(data);
+                return RedirectToAction("Index");
+            }
+            return View();
         }
 
         public ActionResult GetEmployeeMaster()
@@ -81,6 +91,31 @@ namespace IndoSpacePrac.Web.Controllers
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 
-        
+        public void Validation(EmployeeCreateModal model)
+        {
+
+            try
+            {
+
+                if (model.EName == null)
+                {
+                    ModelState.AddModelError("EName", "Name is required");
+                }
+                
+                if(model.Email == null)
+                {
+                    ModelState.AddModelError("Email", "Email is required");
+                }
+
+                if(model.DepartmentId == -1 )
+                {
+                    ModelState.AddModelError("DepartmentID", "Dep");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }
