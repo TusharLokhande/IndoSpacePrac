@@ -1,8 +1,5 @@
-﻿let Obj = {}
+﻿
 
-console.log("LL");
-
-function op (id) { return `<a href="/Employee/Create/${id}">Edit</a>` }
 
 $(document).ready(() => {
 
@@ -21,7 +18,7 @@ $(document).ready(() => {
                 { "data": "Email" },
                 { "data": "DepartmentName" },
                 { "data": "ReportingManagerName" },
-                { "render": function (data, type, full, meta) { return `<a href="/Employee/Create/${full.Id}">Edit</a>` } }
+                { "render": function (data, type, full, meta) { return `<a class="btn btn-primary" href="/Employee/Create/${full.Id}">Update</a> <a class="btn btn-default" href="/Employee/Create/${full.Id}">Delete</a>` } },
             ],
         });
 

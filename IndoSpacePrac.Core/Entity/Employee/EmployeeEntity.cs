@@ -19,9 +19,13 @@ namespace IndoSpacePrac.Core.Entity.Employee
 
         public string EName { get; set; }
 
-       
-        public  string DateOfBirth { get; set; }
 
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [DataType(DataType.Date)]
+
+        public DateTime? DateOfBirth { get; set; }
+
+       
         public  string DepartmentName { get; set; }
         public  int DepartmentId { get; set; }
 

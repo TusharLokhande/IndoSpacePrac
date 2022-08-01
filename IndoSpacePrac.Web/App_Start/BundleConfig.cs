@@ -26,6 +26,13 @@ namespace IndoSpacePrac.Web
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
 
+
+            // Custom StyleSheet
+
+            bundles.Add(new StyleBundle("~/Content/Custom").IncludeDirectory("~/Content/Custom", "*.css"));
+
+            //Custom Javascripts
+
             bundles.Add(new ScriptBundle("~/Scripts/Custom")
             .Include(
                      "~/Scripts/Custom/EmployeeMaster.js"

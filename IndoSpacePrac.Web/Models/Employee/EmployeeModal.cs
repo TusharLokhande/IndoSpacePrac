@@ -33,9 +33,11 @@ namespace IndoSpacePrac.Web.Models.Employee
 
         public string EName { get; set; }
 
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [DataType(DataType.Date)]
+        public DateTime? DateOfBirth { get; set; }
 
-        
-        public string DateOfBirth { get; set; }
+
 
 
         public string DepartmentName { get; set; }

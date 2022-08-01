@@ -1,0 +1,33 @@
+﻿._container{
+    display: flex;
+    justify-content: center;
+    
+}
+
+._button{
+    margin-left: 300px;
+}
+
+.main {
+    margin-left: 100px;
+    width: 70vw;
+    padding-top: 20px;
+    align-items: center;
+    align-self: center;
+}
+
+.select {
+    height: 30px;
+    outline: none;
+    border: 1px solid #ddd;
+    padding: 3px 5px;
+}
+
+
+
+.heading{
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
